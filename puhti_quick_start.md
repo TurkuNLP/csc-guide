@@ -20,7 +20,7 @@ While light computing can be done on the login nodes, heavier computing are to b
 
 In the Slurm script, the _partition_ on which a job is to be executed needs to be specified. The partitions can be found [here](https://docs.csc.fi/computing/running/batch-job-partitions/). The duration of the queue can depend on the partition, the remaining BUs in the project used, the resources asked for, etc.
 
-To submit a job, use `sbatch <slurm_script.sh>`. To view the status of your submitted and running jobs, use `squeue -u <username>`. To display the accounting data for your submitted, running, and finished jobs, use `sacct`.
+To submit a job, use `sbatch <slurm_script.sh>`. To view the status of your submitted and running jobs, use `squeue -u <username>`. To display the accounting data for your submitted, running, and finished jobs, use `sacct`. By default, `sacct` prints out all the jobs that finish/have not finish on the day since midnight. To change the default, please refer to its manual by `man sacct`.
 
 More information on job submission can be found [here](https://docs.csc.fi/computing/running/getting-started/).
 
