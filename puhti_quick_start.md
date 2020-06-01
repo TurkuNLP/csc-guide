@@ -16,11 +16,13 @@ To connect to Puhti, run
 This connects you to your home directory on one of Puhti's two login nodes. There are three main [disk areas](https://docs.csc.fi/computing/disk/) on Puhti, `home`, which is user-specific, `projappl`, which is intended for application storage (on a project basis), and `scratch`, where the binaries for a project locate.
 
 ### Slurm scripts
-While light computing can be done on the login nodes, heavier computing are to be done on the compute nodes. To use the compute nodes, jobs need to be submitted through the jobs scheduling system [Slurm](https://slurm.schedmd.com/). That is, the commands to be executed are written inside a Slurm script and submitted. Example Slurm scripts can be found [here](https://docs.csc.fi/computing/running/creating-job-scripts/) and [here](https://github.com/spyysalo/finbert-text-classification/blob/master/slurm-run-dev.sh).
+While light computing can be done on the login nodes, heavier computing are to be done on the compute nodes. To use the compute nodes, jobs need to be submitted through the job scheduling system [Slurm](https://slurm.schedmd.com/). That is, the commands to be executed are written inside a Slurm script and submitted. Example Slurm scripts can be found [here](https://docs.csc.fi/computing/running/creating-job-scripts/) and [here](https://github.com/TurkuNLP/FinBERT/blob/master/nlpl_tutorial/training_bert.md).
+
+SLURM only interprets lines that start with `#SBATCH`. Slurm scripts are otherwise normal batch scripts that are executed on compute notes, except that they contain these lines. If the script (and processes that it invokes) gets killed (e.g. on timeout), the effect is the same as you would get from killing a script running locally.
 
 In the Slurm script, the _partition_ on which a job is to be executed needs to be specified. The partitions can be found [here](https://docs.csc.fi/computing/running/batch-job-partitions/). The duration of the queue can depend on the partition, the remaining BUs in the project used, the resources asked for, etc.
 
-To submit a job, use `sbatch <slurm_script.sh>`. To view the status of your submitted and running jobs, use `squeue -u <username>`. To display the accounting data for your submitted, running, and finished jobs, use `sacct`. By default, `sacct` prints out all the jobs that finish/have not finish on the day since midnight. To change the default, please refer to its manual by `man sacct`.
+To submit a job, use `sbatch <slurm_script.sh>`. To view the status of your submitted and running jobs, use `squeue -u <username>`. To display the accounting data for your submitted, running, and finished jobs, use `sacct`. i.e. *use `SACCT` to view your jobs that have already finished*. By default, `sacct` prints out all the jobs that finish/have not finish on the day since midnight. To change the default, please refer to its manual by `man sacct`.
 
 More information on job submission can be found [here](https://docs.csc.fi/computing/running/getting-started/).
 
@@ -28,5 +30,3 @@ More information on job submission can be found [here](https://docs.csc.fi/compu
 Puhti uses a module system to enable the usage of mutually incompatible software environments. Information on how to use modules is found [here](https://docs.csc.fi/computing/modules/).
 
 Briefly, to list the currently loaded modules, use `module list`. To unload all modules, use `module purge`. To load a module, use `module load <modulename>`. To search for modules, use `module spider <name>`.
-
-
